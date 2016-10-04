@@ -5,19 +5,14 @@ import {
   StyleSheet,
   Text,
   View,
+ListView,
 NavigatorIOS
 } from 'react-native';
 
 import Main from './Components/Main';
 
-class githubNotetaker extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      list: [],
-    }
-  }
 
+class githubNotetaker extends Component {
 
   render() {
     return (
@@ -28,6 +23,7 @@ class githubNotetaker extends Component {
         }}
           />
 
+
     );
   }
 }
@@ -36,6 +32,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#111111"
+  },
+  list: {
+  },
+  item: {
+    color: "red",
+    backgroundColor: "black",
+    padding: 10,
+    borderColor: "green",
+    borderWidth: 1
   }
 });
 
