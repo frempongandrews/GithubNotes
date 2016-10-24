@@ -14,6 +14,7 @@ import Main from './Components/Main';
 
 class githubNotetaker extends Component {
 
+
   render() {
     return (
         <NavigatorIOS
@@ -22,6 +23,11 @@ class githubNotetaker extends Component {
                         component: Main
         }}
           />
+
+
+
+
+
 
 
     );
