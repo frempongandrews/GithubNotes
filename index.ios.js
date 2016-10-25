@@ -13,7 +13,6 @@ var Main = require('./Components/Main');
 
 class githubNotes extends Component {
 
-
     render() {
         return (
             <NavigatorIOS

@@ -27,4 +27,4 @@ var styles = StyleSheet.create({
     }
 });
 
-export default Dashboard;
+module.exports = Dashboard;

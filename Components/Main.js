@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, TouchableHighlight, ActivityIndicatorIOS, TextInput} from 'react-native';
 var Api = require("../utils/Api");
 var Dashboard = require("./Dashboard");
+import axios from "axios";
 
 class Main extends Component {
     constructor (props) {
@@ -25,19 +26,23 @@ class Main extends Component {
            isLoading: true,
         });
         console.log("SUBMIT" , this.state.username);
-        //fetch data from github
-        //reroute to next passing github info
+        // fetch data from github
+        // reroute to next passing github info
         Api.getBio(this.state.username).then((res) => {
-            if(res.message === "Not Found") {
-                this.setState({
-                    error: "User not found",
-                    isLoading: false
-                });
-            } else {
+            // if(res.message === "Not Found") {
+            //     this.setState({
+            //         error: "User not found",
+            //         isLoading: false
+            //     });
+            // }
+
+            if(res) {
+                console.log(res);
                 this.props.navigator.push({
                     title: res.name || "select option",
-                    passProps: {userInfo: res},
-                    component: Dashboard
+                    component: Dashboard,
+                    passProps: {userInfo: res}
+
                 });
                 this.setState({
                     isLoading: false,
@@ -45,11 +50,24 @@ class Main extends Component {
                     username: ""
                 })
             }
-        })
+
+        });
+
+
+        // var username = this.state.username.toLowerCase().trim();
+        // var url = "https://api.github.com/users/" + username;
+        //
+        // axios.get(url).then(function(res) {
+        //     console.log(res);
+        // }).catch(function(error) {
+        //     console.log(error);
+        // });
+
+
     }
 
     render () {
-        // console.log(this.state.username);
+        console.log(this.state);
         return (
             <View style={styles.MainContainer} >
                 <Text style={styles.title}>Search for a Github user</Text>
