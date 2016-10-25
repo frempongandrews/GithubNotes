@@ -1,14 +1,30 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 
-class Dashboard extends Component () {
+class Dashboard extends Component {
     render () {
         return (
-            <View>
+            <View style={styles.container}>
                 <Text>Dashboard screen</Text>
             </View>
         )
     }
 }
+
+var styles = StyleSheet.create({
+    container: {
+        marginTop: 65,
+        flex: 1
+    },
+
+    image: {
+        height: 350,
+    },
+    buttonText: {
+        fontSize: 24,
+        color: "white",
+        alignSelf: "center"
+    }
+});
 
 export default Dashboard;

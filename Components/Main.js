@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, TouchableHighlight, ActivityIndicatorIOS, TextInput} from 'react-native';
+var Api = require("../utils/Api");
+var Dashboard = require("./Dashboard");
 
 class Main extends Component {
     constructor (props) {
@@ -19,17 +21,35 @@ class Main extends Component {
     }
 
     handleSubmit () {
-        //update indicatorIOS
         this.setState({
            isLoading: true,
         });
         console.log("SUBMIT" , this.state.username);
         //fetch data from github
         //reroute to next passing github info
+        Api.getBio(this.state.username).then((res) => {
+            if(res.message === "Not Found") {
+                this.setState({
+                    error: "User not found",
+                    isLoading: false
+                });
+            } else {
+                this.props.navigator.push({
+                    title: res.name || "select option",
+                    passProps: {userInfo: res},
+                    component: Dashboard
+                });
+                this.setState({
+                    isLoading: false,
+                    error: false,
+                    username: ""
+                })
+            }
+        })
     }
 
     render () {
-        console.log(this.state.username);
+        // console.log(this.state.username);
         return (
             <View style={styles.MainContainer} >
                 <Text style={styles.title}>Search for a Github user</Text>
@@ -39,7 +59,7 @@ class Main extends Component {
                     onChange={this.handleChange.bind(this)}
                 />
                 <TouchableHighlight style={styles.button} onPress={this.handleSubmit.bind(this)} underlayColor="white">
-                    <Text style={styles.btonText} > SEARCH </Text>
+                    <Text style={styles.buttonText} > SEARCH </Text>
                 </TouchableHighlight>
             </View>
 
@@ -74,4 +94,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Main;
+module.exports = Main;
