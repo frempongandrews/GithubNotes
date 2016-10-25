@@ -28,20 +28,14 @@ class Main extends Component {
         // fetch data from github
         // reroute to next passing github info
         Api.getBio(this.state.username).then((res) => {
-            // if(res.message === "Not Found") {
-            //     this.setState({
-            //         error: "User not found",
-            //         isLoading: false
-            //     });
-            // }
-
             if(res.name) {
                 this.props.navigator.push({
                     title: res.name || "select option",
                     component: Dashboard,
                     passProps: {userInfo: res}
-
                 });
+                console.log(res);
+
                 this.setState({
                     isLoading: false,
                     error: false,
@@ -59,7 +53,7 @@ class Main extends Component {
     }
 
     render () {
-        console.log(this.state);
+        //console.log(this.state);
         return (
             <View style={styles.MainContainer} >
                 <Text style={styles.title}>Search for a Github user</Text>
@@ -80,7 +74,7 @@ class Main extends Component {
                 </ActivityIndicator>
 
                 {/*show error if no user found*/}
-                {(this.state.error)? <Text style={styles.notFound}> {this.state.error} </Text> : null }
+                {(this.state.error)? <Text style={styles.notFound}> {this.state.error} </Text> : <View></View> }
 
             </View>
 
@@ -104,6 +98,18 @@ const styles = StyleSheet.create({
         color: '#fff'
     },
 
+    button: {
+        backgroundColor: "white",
+        marginTop: 20,
+        padding: 8,
+        borderRadius:10
+    },
+
+    buttonText: {
+        textAlign: "center",
+
+    },
+
     searchInput: {
         height: 50,
         padding: 4,
@@ -116,8 +122,8 @@ const styles = StyleSheet.create({
 
     notFound: {
         color: "red",
-        fontSize: 20,
-        marginTop: 20,
+        fontSize: 15,
+        marginTop: 30,
     }
 });
 
