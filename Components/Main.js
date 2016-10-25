@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, TouchableHighlight, ActivityIndicatorIOS, TextInput} from 'react-native';
+import {View, Text, StyleSheet, TouchableHighlight, ActivityIndicator, TextInput} from 'react-native';
 var Api = require("../utils/Api");
 var Dashboard = require("./Dashboard");
-import axios from "axios";
 
 class Main extends Component {
     constructor (props) {
@@ -73,7 +72,15 @@ class Main extends Component {
                     <Text style={styles.buttonText} > SEARCH </Text>
                 </TouchableHighlight>
 
-                {(this.state.error)? <Text style={styles.notFound}> User not found</Text> : null }
+                {/*show loading screen if isLoading*/}
+                <ActivityIndicator
+                    animating={this.state.isLoading}
+                    color="#111"
+                    size="large">
+                </ActivityIndicator>
+
+                {/*show error if no user found*/}
+                {(this.state.error)? <Text style={styles.notFound}> {this.state.error} </Text> : null }
 
             </View>
 
