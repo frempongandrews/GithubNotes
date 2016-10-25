@@ -1,0 +1,1 @@
+- Always use module.exports and require when possible

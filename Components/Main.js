@@ -36,8 +36,7 @@ class Main extends Component {
             //     });
             // }
 
-            if(res) {
-                console.log(res);
+            if(res.name) {
                 this.props.navigator.push({
                     title: res.name || "select option",
                     component: Dashboard,
@@ -49,20 +48,14 @@ class Main extends Component {
                     error: false,
                     username: ""
                 })
+            } else {
+                this.setState({
+                    error: "User not found",
+                    isLoading: false,
+                });
             }
 
-        });
-
-
-        // var username = this.state.username.toLowerCase().trim();
-        // var url = "https://api.github.com/users/" + username;
-        //
-        // axios.get(url).then(function(res) {
-        //     console.log(res);
-        // }).catch(function(error) {
-        //     console.log(error);
-        // });
-
+        })
 
     }
 
@@ -79,6 +72,9 @@ class Main extends Component {
                 <TouchableHighlight style={styles.button} onPress={this.handleSubmit.bind(this)} underlayColor="white">
                     <Text style={styles.buttonText} > SEARCH </Text>
                 </TouchableHighlight>
+
+                {(this.state.error)? <Text style={styles.notFound}> User not found</Text> : null }
+
             </View>
 
         )
@@ -109,6 +105,12 @@ const styles = StyleSheet.create({
         borderColor: "white",
         borderRadius: 8,
         color: "white"
+    },
+
+    notFound: {
+        color: "red",
+        fontSize: 20,
+        marginTop: 20,
     }
 });
 
