@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet, Image, TouchableHighlight} from 'react-native';
 var Profile = require("./Profile");
+var Repositories = require("./Repositories");
+var Api = require("../utils/Api");
 
 class Dashboard extends Component {
     makeBackground(btn) {
@@ -36,7 +38,23 @@ class Dashboard extends Component {
     }
 
     goToRepos() {
-        console.log("going to repos");
+        // console.log("going to repos");
+        // console.log(this.props.userInfo.login);
+        Api.getRepos(this.props.userInfo.login).then((res) => {
+            console.log(res);
+                this.props.navigator.push({
+                    title: "Repos",
+                    component: Repositories,
+                    passProps: {
+                        userInfo: this.props.userInfo,
+                        repos: res
+                    }
+                });
+
+        });
+
+
+
     }
 
     goToNotes() {

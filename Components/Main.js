@@ -24,7 +24,7 @@ class Main extends Component {
         this.setState({
            isLoading: true,
         });
-        console.log("SUBMIT" , this.state.username);
+        //console.log("SUBMIT" , this.state.username);
         // fetch data from github
         // reroute to next passing github info
         Api.getBio(this.state.username).then((res) => {

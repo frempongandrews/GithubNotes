@@ -16,7 +16,7 @@ var styles = StyleSheet.create({
         backgroundColor: "#e4e4e4",
         height: 1,
         marginLeft: 15,
-        flex: 1
+
     }
 });
 
