@@ -34,7 +34,7 @@ class Main extends Component {
                     component: Dashboard,
                     passProps: {userInfo: res}
                 });
-                console.log(res);
+                //console.log(res);
 
                 this.setState({
                     isLoading: false,

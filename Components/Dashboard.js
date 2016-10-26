@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet, Image, TouchableHighlight} from 'react-native';
-
+var Profile = require("./Profile");
 
 class Dashboard extends Component {
-
     makeBackground(btn) {
         var obj = {
             // flexDirection: "row",
@@ -30,6 +29,10 @@ class Dashboard extends Component {
 
     goToProfile () {
         console.log("going to Profile");
+        this.props.navigator.push({
+            component: Profile,
+            passProps: {userInfo: this.props.userInfo}
+        });
     }
 
     goToRepos() {
