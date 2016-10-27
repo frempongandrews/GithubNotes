@@ -3,6 +3,7 @@ import {Text, View, StyleSheet, Image, TouchableHighlight} from 'react-native';
 var Profile = require("./Profile");
 var Repositories = require("./Repositories");
 var Api = require("../utils/Api");
+var Notes = require("./Notes");
 
 class Dashboard extends Component {
     makeBackground(btn) {
@@ -58,7 +59,23 @@ class Dashboard extends Component {
     }
 
     goToNotes() {
-        console.log("Going to Notes");
+        console.log("going to notes");
+        Api.getNotes(this.props.userInfo.login).then((res) => {
+            res = res || {};
+            this.props.navigator.push({
+                component: Notes,
+                title: "Notes",
+                passProps: {
+                    notes: res,
+                    userInfo: this.props.userInfo
+                }
+            });
+        }).catch((err) => {
+            console.log(err);
+            // return err
+        });
+
+
     }
 
     render () {

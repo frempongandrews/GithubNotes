@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 var Badge = require("./Badge");
 var Separator = require("./Helpers/Separator");
 import {View, Text, StyleSheet, ScrollView, TouchableHighlight} from "react-native";
+var Web = require("./Helpers/Web");
 
 class Repositories extends Component {
 
@@ -9,7 +10,11 @@ class Repositories extends Component {
 
         //view a webpage when a repo is clicked
         console.log("The url is: " + url);
-
+        this.props.navigator.push({
+            component: Web,
+            title: "Web View",
+            passProps: {url}
+        })
     }
 
     render () {
