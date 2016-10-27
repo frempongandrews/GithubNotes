@@ -6,6 +6,7 @@ var Api = require("../utils/Api");
 var Notes = require("./Notes");
 
 class Dashboard extends Component {
+
     makeBackground(btn) {
         var obj = {
             // flexDirection: "row",
@@ -60,25 +61,35 @@ class Dashboard extends Component {
 
     goToNotes() {
         console.log("going to notes");
-        Api.getNotes(this.props.userInfo.login).then((res) => {
-            res = res || {};
-            this.props.navigator.push({
-                component: Notes,
-                title: "Notes",
-                passProps: {
-                    notes: res,
-                    userInfo: this.props.userInfo
-                }
-            });
-        }).catch((err) => {
-            console.log(err);
-            // return err
-        });
+        // Api.getNotes(this.props.userInfo.login).then((res) => {
+        //     res = res || {};
+        //     this.props.navigator.push({
+        //         component: Notes,
+        //         title: "Notes",
+        //         passProps: {
+        //             notes: res,
+        //             userInfo: this.props.userInfo
+        //         }
+        //     });
+        // }).catch((err) => {
+        //     console.log(err);
+        //     // return err
+        // });
 
+        this.props.navigator.push({
+                    component: Notes,
+                    title: "Notes",
+                    passProps: {
+                        userInfo: this.props.userInfo
+                    }
+        });
 
     }
 
     render () {
+
+
+
         return (
             <View style={styles.container}>
                 <Image source={{uri: this.props.userInfo.avatar_url}} style={{height: 350}}/>
@@ -88,10 +99,6 @@ class Dashboard extends Component {
 
                 <TouchableHighlight onPress={this.goToRepos.bind(this)} underlayColor="#88D4F5" style={this.makeBackground(1)}>
                     <Text style={styles.buttonText}> View Repos</Text>
-                </TouchableHighlight>
-
-                <TouchableHighlight onPress={this.goToNotes.bind(this)} underlayColor="#88D4F5" style={this.makeBackground(2)}>
-                    <Text style={styles.buttonText}> View Notes</Text>
                 </TouchableHighlight>
 
             </View>

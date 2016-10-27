@@ -124,9 +124,9 @@ var styles = StyleSheet.create({
     }
 });
 
-Notes.propTypes = {
-    userInfo: React.PropTypes.object.isRequired,
-    notes: React.PropTypes.object.isRequired
-}
+// Notes.propTypes = {
+//     userInfo: React.PropTypes.object.isRequired,
+//     notes: React.PropTypes.object.isRequired
+// }
 
 module.exports = Notes;
