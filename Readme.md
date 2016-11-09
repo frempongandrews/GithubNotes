@@ -1,0 +1,1 @@
+A mobile application (for ios) built with react-native. A Github client to search for github users and browse through their repositories. 
